@@ -20,7 +20,6 @@ on:
       ARTIFACT_NAME:
         description: 'Select Artifact'
         type: boolean 
-        default: ALL
         options:
         - ALL
         - trtserver
