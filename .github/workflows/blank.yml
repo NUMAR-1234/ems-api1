@@ -20,7 +20,7 @@ on:
       CANARY_STORES:
         description: 'Build report for canary stores'
         required: true
-        default: true
+        default: false
         type: boolean
 
 jobs:
