@@ -17,16 +17,11 @@ on:
         required: true
         default: 1.2.2
         type: string
-      ARTIFACT_NAME:
-        description: 'Select Artifact'
-        type: checkbox 
-        default: ALL
-        options:
-        - ALL
-        - trtserver
-        - models
-        - gaize
-        - rrtsp
+      CANARY_STORES:
+        description: 'Build report for canary stores'
+        required: true
+        default: true
+        type: boolean
 
 jobs:
   TRTServer-Report:
