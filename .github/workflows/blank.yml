@@ -1,58 +1,63 @@
-name: Canary Stores Report
+name: Create Preload Report
+run-name: Build Report for ${{ inputs.ARTIFACT_NAME }} version ${{ inputs.VERSION }} for ${{ inputs.PROJECT }}
 
 on:
   workflow_dispatch:
     inputs:
-      run-canary-report:
-        description: 'Run Canary Report'
-        default: false
-      canary-stores:
-        description: 'List of Canary Stores'
-        default: 'store17,store21,store23,store24,store25,store26,store27,store53,store58,store62,store70,store80,store84,store85,store90,store121,store408'
+      PROJECT:
+        description: 'Project Name'
+        required: true
+        default: quebec
+        type: string
+      STORES:
+        description: "List of Stores"
+        default: '["store21"]'
+      VERSION:
+        description: 'Version'
+        required: true
+        default: 1.2.2
+        type: string
+      ARTIFACT_NAME:
+        description: 'Select Artifact'
+        type: boolean cheackbox
+        default: ALL
+        options:
+        - ALL
+        - trtserver
+        - models
+        - gaize
+        - rrtsp
 
 jobs:
-  canary-report-job:
+  TRTServer-Report:
+    name: TRT Report
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        canary-store:
-          - store17
-          - store21
-          - store23
-          - store24
-          - store25
-          - store26
-          - store27
-          - store53
-          - store58
-          - store62
-          - store70
-          - store80
-          - store84
-          - store85
-          - store90
-          - store121
-          - store408
-
-    inputs:
-      run-canary-report:
-        description: 'Run Canary Report'
-        default: false
-      canary-stores:
-        description: 'List of Canary Stores'
-        default: ''
-
+    if: ${{ (github.event.inputs.ARTIFACT_NAME == 'trtserver') || (github.event.inputs.ARTIFACT_NAME == 'ALL') }}
+    env:
+      CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+      CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Run Canary Report
-        if: ${{ github.event.inputs.run-canary-report == 'true' }}
+      - name: Build report and display summary
         run: |
-          # Iterate over selected canary stores from the matrix
-          for store in "${{ matrix.canary-store }}"; do
-            echo "Running report for store: $store"
-            # Add your report generation command for each store here
-            # For example, echo "Generating report for $store"
-          done
+          ./scripts/preload-artifacts/create_artifact_report.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }}
+      - name: Ready Stores
+        run: |
+          echo "Ready Stores:"
+          cat ./ready_stores.txt
+      - name: Failed Stores
+        run: |
+          echo "Failed Stores:"
+          cat ./failed_stores.txt
+          echo
+          echo "List:"
+          ./scripts/preload-artifacts/make-store-list.sh ./failed_stores.txt
+      - name: Not Ready Stores
+        run: |
+          echo "Not Ready Stores:"
+          cat ./notready_stores.txt
+          echo
+          echo "List:"
+          ./scripts/preload-artifacts/make-store-list.sh ./notready_stores.txt
