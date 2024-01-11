@@ -19,7 +19,7 @@ on:
         type: string
       ARTIFACT_NAME:
         description: 'Select Artifact'
-        type: boolean cheackbox
+        type: boolean 
         default: ALL
         options:
         - ALL
