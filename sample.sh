@@ -20,4 +20,4 @@ for store in "${STORES_ARRAY[@]}"; do
   STORE_LIST="${STORE_LIST}mysdcshdc ${store} "  # Concatenate the data for each store
 done
 
-echo "${STORE_LIST}"
+echo "sample : ${STORE_LIST}"
