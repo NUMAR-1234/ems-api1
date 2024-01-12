@@ -13,21 +13,17 @@ on:
         description: 'Production or Canary Stores'
         type: choice
         options:
-        - Canary
-        - Production
+          - Canary
+          - Production
       STORES:
         description: "List of Stores"
         default: '["store21"]'
+        if: github.event.inputs.CANARY == 'Canary'
       VERSION:
         description: 'Version'
         required: true
         default: 1.2.2
         type: string
-      CANARY_STORES:
-        description: 'Build report for canary stores'
-        required: true
-        default: false
-        type: boolean
 
 jobs:
   TRTServer-Report:
