@@ -1,5 +1,5 @@
 name: Create Preload Report
-run-name: Build Report for ${{ inputs.ARTIFACT_NAME }} version ${{ inputs.VERSION }} for ${{ inputs.PROJECT }} for ${{ inputs.STORES[@] }}
+run-name: Build Report for ${{ inputs.ARTIFACT_NAME }} version ${{ inputs.VERSION }} for ${{ inputs.PROJECT }} for ${{ inputs.STORES }}
 
 on:
   workflow_dispatch:
