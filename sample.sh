@@ -7,9 +7,7 @@ STORES_LIST=$4
 
 echo "$ARTIFACT_NAME"
 
-STORES_LIST=${STORES_LIST//[\[\]\"\'']}
-
-names_to_filter=$(echo "${STORES_LIST}" | tr '\n' ',' | sed 's/,$//')
+names_to_filter=$(echo "$STORES_LIST" | sed 's/[][]//g' | tr '\n' ',' | sed 's/,$//')
 
 echo "$names_to_filter"
 
