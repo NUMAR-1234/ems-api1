@@ -42,7 +42,7 @@ jobs:
 
       - name: Build report and display summary
         run: |
-          ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} ${{ inputs.STORES }}
+           chmod +x sample.sh && ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} ${{ inputs.STORES }}
       - name: Ready Stores
         run: |
           echo "Ready Stores:"
