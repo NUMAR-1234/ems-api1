@@ -1,5 +1,12 @@
 #!/bin/bash
 
+ARTIFACT_NAME=$1
+TENANT_NAME=$2
+ARTIFACT_VERSION=$3
+STORES_LIST=$4
+
+names_to_filter=$(echo "${STORES_LIST}" | tr '\n' ',' | sed 's/,$//')
+
 json_data=$(cat data.json)
 
 # Convert command-line arguments to a JSON array of strings
