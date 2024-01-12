@@ -11,6 +11,9 @@ names_to_filter=$(echo "${STORES_LIST}" | tr '\n' ',' | sed 's/,$//')
 
 echo "$names_to_filter"
 
+pwd 
+ls 
+
 json_data=$(cat data.json)
 
 # Convert command-line arguments to a JSON array of strings
