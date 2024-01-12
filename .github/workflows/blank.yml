@@ -11,7 +11,7 @@ on:
         type: string
       STORES:
         description: "List of Stores"
-        default: '["store21"], ["store22"]'
+        default: '["store21, store22"]'
       VERSION:
         description: 'Version'
         required: true
