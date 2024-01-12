@@ -9,6 +9,12 @@ on:
         required: true
         default: quebec
         type: string
+      CANARY:
+        description: 'Production or Canary Stores'
+        type: choice
+        options:
+        - Canary
+        - Production
       STORES:
         description: "List of Stores"
         default: '["store21"]'
