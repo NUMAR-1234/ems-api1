@@ -1,5 +1,5 @@
 name: Create Preload Report
-run-name: Build Report for ${{ inputs.ARTIFACT_NAME }} version ${{ inputs.VERSION }} for ${{ inputs.PROJECT }}
+run-name: Build Report for ${{ inputs.ARTIFACT_NAME }} version ${{ inputs.VERSION }} for ${{ inputs.PROJECT }} for ${{ inputs.STORES[@] }}
 
 on:
   workflow_dispatch:
@@ -9,21 +9,24 @@ on:
         required: true
         default: quebec
         type: string
-      CANARY:
-        description: 'Production or Canary Stores'
-        type: choice
-        options:
-          - Canary
-          - Production
       STORES:
         description: "List of Stores"
-        default: '["store21"]'
-        if: github.event.inputs.CANARY == 'Canary'
+        default: '["store21"], ["store22"]'
       VERSION:
         description: 'Version'
         required: true
         default: 1.2.2
         type: string
+      ARTIFACT_NAME:
+        description: 'Select Artifact'
+        type: choice
+        default: ALL
+        options:
+        - ALL
+        - trtserver
+        - models
+        - gaize
+        - rrtsp
 
 jobs:
   TRTServer-Report:
@@ -39,7 +42,7 @@ jobs:
 
       - name: Build report and display summary
         run: |
-          ./scripts/preload-artifacts/create_artifact_report.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }}
+          ./scripts/preload-artifacts/create_artifact_report.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} ${{ inputs.STORES[@] }}
       - name: Ready Stores
         run: |
           echo "Ready Stores:"
