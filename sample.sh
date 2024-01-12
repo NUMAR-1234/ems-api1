@@ -11,8 +11,10 @@ names_to_filter=$(echo "${STORES_LIST}" | tr '\n' ',' | sed 's/,$//')
 
 echo "$names_to_filter"
 
+
 pwd 
 ls 
+cat data.json
 
 json_data=$(cat data.json)
 
