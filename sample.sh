@@ -5,6 +5,8 @@ TENANT_NAME=$2
 ARTIFACT_VERSION=$3
 STORES_LIST=$4
 
+echo "$ARTIFACT_NAME"
+
 names_to_filter=$(echo "${STORES_LIST}" | tr '\n' ',' | sed 's/,$//')
 
 json_data=$(cat data.json)
