@@ -42,7 +42,7 @@ jobs:
 
       - name: Build report and display summary
         run: |
-          ./scripts/preload-artifacts/create_artifact_report.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} ${{ inputs.STORES[@] }}
+          ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} ${{ inputs.STORES[@] }}
       - name: Ready Stores
         run: |
           echo "Ready Stores:"
