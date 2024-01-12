@@ -6,7 +6,7 @@ STORES_LIST=$4
 echo "all the store list: ${STORES_LIST}"
 
 # Remove square brackets and quotes from the list
-STORES_LIST=${STORES_LIST//[\"[\']/}
+STORES_LIST=${STORES_LIST//[\[\"\']/}
 
 # Split the list into an array
 IFS=', ' read -ra STORES_ARRAY <<< "${STORES_LIST}"
