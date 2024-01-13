@@ -5,20 +5,21 @@ TENANT_NAME=$2
 ARTIFACT_VERSION=$3
 STORES_LIST=$4
 
-echo "$ARTIFACT_NAME"
+echo "ARTIFACT_NAME: $ARTIFACT_NAME"
+echo "STORES_LIST: $STORES_LIST"
 
-# Remove square brackets, quotes, and comma from STORES_LIST
+# Remove square brackets and quotes from STORES_LIST
 names_to_filter=$(echo "$STORES_LIST" | sed 's/[][]//g; s/,//g')
 
-echo "$names_to_filter"
+echo "names_to_filter: $names_to_filter"
 
-pwd 
-ls 
+pwd
+ls
 cat data.json
 
 json_data=$(cat data.json)
 
 # Use jq to filter data based on the provided names
-filtered_data=$(echo "$json_data" | jq --arg names_to_filter "$names_to_filter" '.[] | select(.server_name as $item | ($names_to_filter | split(", ") | index($item)) // empty)')
+filtered_data=$(echo "$json_data" | jq --arg names_to_filter "$names_to_filter" '.[] | select(.server_name as $item | ($names_to_filter | split(" ") | index($item)) // empty)')
 
 echo "$filtered_data"
