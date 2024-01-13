@@ -9,7 +9,7 @@ echo "ARTIFACT_NAME: $ARTIFACT_NAME"
 echo "STORES_LIST: $STORES_LIST"
 
 # Remove square brackets and quotes from STORES_LIST
-names_to_filter=$(echo "$STORES_LIST" | sed 's/[][]//g; s/,/, /g')
+names_to_filter=$(echo "$STORES_LIST" | sed 's/[][]//g; s/,/, /g; s/,//g')
 
 echo "names_to_filter: $names_to_filter"
 
