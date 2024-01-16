@@ -40,7 +40,7 @@ jobs:
     env:
       CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
       CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
-      CANARY_STORES: 'store17 store21 store23 store24 store25 store26 store27 store53 store58 store62 store70 store80 store84 store85 store90 store121 store408'
+      CANARY_STORE: 'store17 store21 store23 store24 store25 store26 store27 store53 store58 store62 store70 store80 store84 store85 store90 store121 store408'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
