@@ -6,6 +6,8 @@ ARTIFACT_VERSION=$3
 STORES_LIST=$4
 CANARY_STORES=$5
 
+CANARY_STORES=$(echo "$CANARY_STORES" | tr '[:upper:]' '[:lower:]')
+
 echo "sample: $CANARY_STORES"
 
 echo "ARTIFACT_NAME: $ARTIFACT_NAME"
