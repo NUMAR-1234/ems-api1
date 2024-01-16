@@ -8,7 +8,7 @@ CANARY_STORES_LIST=$5
 
 echo "sample : $CANARY_STORES_LIST"
 
-echo "bjhbjhbjhbj: $CANARY_STORES"
+echo "bjhbjhbjhbj: $CANARY_STORE"
 
 
 echo "ARTIFACT_NAME: $ARTIFACT_NAME"
