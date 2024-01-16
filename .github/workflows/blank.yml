@@ -49,7 +49,7 @@ jobs:
         run: |
            chmod +x sample.sh
            if [ "$CANARY_STORES" == "true" ]; then
-             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}" "$CANARY_STORE"
+             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}" "$CANARY_STORES"
            else
              ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}"
            fi
