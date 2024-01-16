@@ -4,9 +4,9 @@ ARTIFACT_NAME=$1
 TENANT_NAME=$2
 ARTIFACT_VERSION=$3
 STORES_LIST=$4
-CANARY_STORE=$5
+CANARY_STORES=$5
 
-  echo "bjhbjhbjhbj: $CANARY_STORE"
+  echo "bjhbjhbjhbj: $CANARY_STORES"
  
   echo "samplesdcsdc"
 
