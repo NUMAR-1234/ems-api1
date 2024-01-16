@@ -48,6 +48,7 @@ jobs:
       - name: Build report and display summary
         run: |
            chmod +x sample.sh
+           echo "canary: $CANARY_STORES"
            if [ "$CANARY_STORES" == "true" ]; then
              ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}" $CANARY_STORES
            else
