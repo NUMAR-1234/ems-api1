@@ -11,7 +11,7 @@ on:
         type: string
       STORES:
         description: "List of Stores"
-        default: '["store21, store22"]'
+        default: '["store21", "store22"]'
       CANARY_STORES:
          type: boolean
          default: false
@@ -40,28 +40,16 @@ jobs:
     env:
       CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
       CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      CANARY_STORES: 'store17 store21 store23 store24 store25 store26 store27 store53 store58 store62 store70 store80 store84 store85 store90 store121 store408'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Build report and display summary
         run: |
-           chmod +x sample.sh && ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} ${{ inputs.STORES }}
-      - name: Ready Stores
-        run: |
-          echo "Ready Stores:"
-          cat ./ready_stores.txt
-      - name: Failed Stores
-        run: |
-          echo "Failed Stores:"
-          cat ./failed_stores.txt
-          echo
-          echo "List:"
-          ./scripts/preload-artifacts/make-store-list.sh ./failed_stores.txt
-      - name: Not Ready Stores
-        run: |
-          echo "Not Ready Stores:"
-          cat ./notready_stores.txt
-          echo
-          echo "List:"
-          ./scripts/preload-artifacts/make-store-list.sh ./notready_stores.txt
+           chmod +x sample.sh
+           if [ "$CANARY_STORES" == "true" ]; then
+             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}" "$CANARY_STORES"
+           else
+             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}"
+           fi
