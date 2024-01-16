@@ -12,6 +12,9 @@ on:
       STORES:
         description: "List of Stores"
         default: '["store21, store22"]'
+      CANARY_STORES:
+         type: boolean
+         default: false
       VERSION:
         description: 'Version'
         required: true
