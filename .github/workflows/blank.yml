@@ -15,6 +15,7 @@ on:
       CANARY_STORES:
          type: boolean
          default: false
+         description: 'Generate report for canary stores'
       VERSION:
         description: 'Version'
         required: true
