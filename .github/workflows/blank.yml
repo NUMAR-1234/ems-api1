@@ -40,7 +40,6 @@ jobs:
     env:
       CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
       CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
-      CANARY_STORE: 'store17 store21 store23 store24 store25 store26 hvhgvhvhg  store27 store53 store58 store62 store70 store80 store84 store85 store90 store121 store408'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -48,8 +47,9 @@ jobs:
       - name: Build report and display summary
         run: |
            chmod +x sample.sh
-           if [ "$CANARY_STORES" == "true" ]; then
-             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}"
+           if [ "${{ inputs.CANARY_STORES }}" == "true" ]; then
+             CANARY_STORE='store17 store21 store23 store24 store25 store26 hvhgvhvhg store27 store53 store58 store62 store70 store80 store84 store85 store90 store121 store408'
+             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}" "$CANARY_STORE"
            else
              ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}"
            fi
