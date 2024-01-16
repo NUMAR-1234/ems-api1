@@ -6,11 +6,10 @@ ARTIFACT_VERSION=$3
 STORES_LIST=$4
 CANARY_STORES_LIST=$5
 
-if [ "${{ inputs.CANARY_STORES }}" == "true" ]; then
   echo "bjhbjhbjhbj: $CANARY_STORE"
-else 
+ 
   echo "samplesdcsdc"
-fi
+
 
 
 echo "ARTIFACT_NAME: $ARTIFACT_NAME"
