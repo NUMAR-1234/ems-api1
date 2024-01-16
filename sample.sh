@@ -6,10 +6,11 @@ ARTIFACT_VERSION=$3
 STORES_LIST=$4
 CANARY_STORES=$5
 
-  echo "bjhbjhbjhbj: $CANARY_STORES"
- 
-  echo "samplesdcsdc"
-
+if [ -n "$CANARY_STORES" ]; then
+  echo "Canary stores are available: $CANARY_STORES"
+else
+  echo "Canary stores are not available"
+fi
 
 
 echo "ARTIFACT_NAME: $ARTIFACT_NAME"
