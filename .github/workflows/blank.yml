@@ -1,4 +1,4 @@
-name: Create Preload Report
+name: Create Preload Re
 run-name: Build Report for ${{ inputs.ARTIFACT_NAME }} version ${{ inputs.VERSION }} for ${{ inputs.PROJECT }} for ${{ inputs.STORES }}
 
 on:
