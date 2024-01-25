@@ -48,8 +48,7 @@ jobs:
         run: |
            chmod +x sample.sh
            if [ "${{ inputs.CANARY_STORES }}" == "true" ]; then
-             CANARY_STORE='store17 store21 store23 store24 store25 store26 hvhgvhvhg store27 store53 store58 store62 store70 store80 store84 store85 store90 store121 store408'
-             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}" "$CANARY_STORE"
+             ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}" "${{ vars.CANARY_STORES }}"
            else
              ./sample.sh trtserver ${{ inputs.PROJECT }} ${{ inputs.VERSION }} "${{ inputs.STORES }}"
            fi
